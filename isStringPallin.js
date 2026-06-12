@@ -10,7 +10,7 @@ console.log(isPallindron('abcdba'));
 
 
 
-
+// Other way
 function isPallindron(str) {
   let isPallin = true;
 

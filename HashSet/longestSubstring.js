@@ -28,12 +28,10 @@ function longestSubString(str) {
   return mapArr[mapArrLength];
 }
 
-
 // Code with maxLength tracking (no sorting):
 
-const longString = "qwertyuqwedsaasdabcstyuiop1234567";
-console.log(longestSubString(longString));
-
+// const longString = "qwertyuqwedsaasdabcstyuiop1234567";
+// console.log(longestSubString(longString));
 
 function longestSubString(str) {
   let maxLength = 0;
@@ -53,7 +51,6 @@ function longestSubString(str) {
 
   return maxLength;
 }
-
 
 // Another way to solve
 
@@ -76,5 +73,35 @@ function longestSubString(str) {
   return maxLen;
 }
 
-const longString1 = "qwertyuqwedsaasdabcstyuiop1234567";
-console.log(longestSubString(longString1));  // Outputs: 11
+// const longString1 = "qwertyuqwedsaasdabcstyuiop1234567";
+// console.log("helloooo ",longestSubString1(longString1)); // Outputs: 11
+console.log(longestSubString1("qbq")); 
+
+function longestSubString1(str) {
+  const arr = str.split("");
+  let finalArr = [];
+
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    const newArr = [];
+    newArr.push(arr[i]);
+    const set = new Set();
+    set.add(arr[i])
+
+    for (let j = i + 1; j < arr.length; j++) {
+      if (set.has(arr[j])) {
+        break;
+      } else {
+        set.add(arr[j]);
+        newArr.push(arr[j]);
+      }
+    }
+    if (count < newArr.length) {
+      count = newArr.length;
+      // finalArr = null;
+      finalArr= [...newArr];
+    }
+  }
+  return finalArr.join("");
+}
