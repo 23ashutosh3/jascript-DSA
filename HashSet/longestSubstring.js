@@ -55,8 +55,7 @@ function longestSubString(str) {
 }
 
 
-
-
+// Another way to solve
 
 // O(n) Solution using sliding window and Set
 function longestSubString(str) {

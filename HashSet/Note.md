@@ -49,7 +49,7 @@ set.forEach((value) => {
 | Indexing                   | ❌ No                  | ✅ Yes (e.g., arr\[0]) |
 
 
-<!-- 🧠 Does a Set have keys or values? -->
+<!--  Does a Set have keys or values? -->
 ✔️ Short Answer:
 
 A Set has values only
@@ -143,7 +143,7 @@ console.log(exists); // ✅ true
 
 
 
-🧩 What is a Hash Table?
+ What is a Hash Table?
 
 A hash table (or hash map) is a data structure that stores key-value pairs and provides fast average-time access to values by their keys.
 
