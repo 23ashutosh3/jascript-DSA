@@ -1,45 +1,71 @@
-// 2. Find the first repeating character
-// Input: "abca"
-// Output: "a"
+// ==========================================
+// 1. First Repeating Character (HashMap)
+// ==========================================
+//
+// Given a string, find the first character that appears more than once.
+// Return the character and its count at the time of first repetition.
+// If no character repeats, return null.
+//
+// Examples:
+//   Input: "azbbcde"    Output: { char: 'b', newCount: 2 }
+//   Input: "abcdef"     Output: null
+//   Input: "abca"       Output: { char: 'a', newCount: 2 }
+//
+// Constraints:
+//   - O(n) time using HashMap
+//   - Return as soon as the first repeat is found
+// ==========================================
 
-const obj = {
-  input: "azbbcde",
-};
 
-const obj2 = {
-  input: "anrrbblcde",
-};
-
-console.log(nonRepeatingChar.call(obj));
-console.log(nonRepeatingChar.call(obj2));
-
-// using HashMap Find the first repeating character
-
-function nonRepeatingChar(){
-    const str1 = this.input;
-
-    const map = new Map();
-    // Step 1: Count frequency of each character
-
-    for(let char of str1){
-        if(map.has(char)){
-            const newCount = map.get(char)+1
-            map.set(char,newCount)
-
-            return {char ,newCount}
-        }else{
-            map.set(char,1)
-        }
-    }
-}
-
-// return all repeative char with count
-
-function nonRepeatingChar() {
+function firstRepeatingChar() {
   const str1 = this.input;
 
   const map = new Map();
-  // Step 1: Count frequency of each character
+
+  for (let char of str1) {
+    if (map.has(char)) {
+      const newCount = map.get(char) + 1;
+      map.set(char, newCount);
+
+      return { char, newCount };
+    } else {
+      map.set(char, 1);
+    }
+  }
+  return null;
+}
+
+// -------------------- Test Cases --------------------
+console.log(firstRepeatingChar.call({ input: "azbbcde" }));
+// Expected: { char: 'b', newCount: 2 }
+
+console.log(firstRepeatingChar.call({ input: "abcdef" }));
+// Expected: null
+
+console.log(firstRepeatingChar.call({ input: "abca" }));
+// Expected: { char: 'a', newCount: 2 }
+
+// ==========================================
+// 2. All Repeating Characters with Count (HashMap)
+// ==========================================
+//
+// Given a string, find all characters that appear more than once
+// and return each with its total count.
+// If no character repeats, return null.
+//
+// Examples:
+//   Input: "aabbcde"     Output: [ { ele: 'a', count: 2 }, { ele: 'b', count: 2 } ]
+//   Input: "abcdef"      Output: null
+//   Input: "aabbbccc"    Output: [ { ele: 'a', count: 2 }, { ele: 'b', count: 3 }, { ele: 'c', count: 3 } ]
+//
+// Constraints:
+//   - O(n) time using HashMap
+// ==========================================
+
+function allRepeatingCharsMap() {
+  const str1 = this.input;
+
+  const map = new Map();
 
   for (let char of str1) {
     if (map.has(char)) {
@@ -59,29 +85,49 @@ function nonRepeatingChar() {
   return arr.length ? arr : null;
 }
 
+// -------------------- Test Cases --------------------
+console.log(allRepeatingCharsMap.call({ input: "aabbcde" }));
+// Expected: [ { ele: 'a', count: 2 }, { ele: 'b', count: 2 } ]
 
-// Without Hash Map
+console.log(allRepeatingCharsMap.call({ input: "abcdef" }));
+// Expected: null
 
-function allRepeatingChars() {
+console.log(allRepeatingCharsMap.call({ input: "aabbbccc" }));
+// Expected: [ { ele: 'a', count: 2 }, { ele: 'b', count: 3 }, { ele: 'c', count: 3 } ]
+
+// ==========================================
+// 3. All Repeating Characters with Count (Brute Force)
+// ==========================================
+//
+// Given a string, find all characters that appear more than once
+// and return each with its total count. No HashMap used.
+//
+// Examples:
+//   Input: "aabbcde"     Output: [ { char: 'a', count: 2 }, { char: 'b', count: 2 } ]
+//   Input: "abcdef"      Output: null
+//   Input: "anrrbblcde"  Output: [ { char: 'r', count: 2 }, { char: 'b', count: 2 } ]
+//
+// Constraints:
+//   - O(n^2) time, no HashMap
+// ==========================================
+
+function allRepeatingCharsBrute() {
   const str = this.input;
-  const checked = []; // to avoid duplicates
+  const checked = [];
   const result = [];
 
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
     let count = 0;
 
-    // Skip already counted character
     if (checked.includes(char)) continue;
 
-    // Count occurrences
     for (let j = 0; j < str.length; j++) {
       if (str[j] === char) {
         count++;
       }
     }
 
-    // Store repeating chars only
     if (count > 1) {
       result.push({ char, count });
       checked.push(char);
@@ -91,12 +137,12 @@ function allRepeatingChars() {
   return result.length ? result : null;
 }
 
-// Example usage
-const obj1 = { input: "aabbcde" };
-const obj2 = { input: "anrrbblcde" };
+// -------------------- Test Cases --------------------
+console.log(allRepeatingCharsBrute.call({ input: "aabbcde" }));
+// Expected: [ { char: 'a', count: 2 }, { char: 'b', count: 2 } ]
 
-console.log(allRepeatingChars.call(obj1));
-// 👉 [ { char: 'a', count: 2 }, { char: 'b', count: 2 } ]
+console.log(allRepeatingCharsBrute.call({ input: "abcdef" }));
+// Expected: null
 
-console.log(allRepeatingChars.call(obj2));
-// 👉 [ { char: 'r', count: 2 }, { char: 'b', count: 2 } ]
+console.log(allRepeatingCharsBrute.call({ input: "anrrbblcde" }));
+// Expected: [ { char: 'r', count: 2 }, { char: 'b', count: 2 } ]
