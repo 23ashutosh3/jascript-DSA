@@ -37,7 +37,7 @@
 
 function firstNegative(nums, k) {
   const subArray = [];
-  
+
   // console.log("nums.length", nums.length - k);
 
   for (let i = 0; i <= nums.length - k; i++) {
@@ -100,3 +100,34 @@ function firstNegativeSW(nums, k) {
 // console.log(firstNegativeSW([1, 2, 3, 4, 5], 3)); // Expected: [0, 0, 0]
 // console.log(firstNegativeSW([-1, -2, -3, -4], 2)); // Expected: [-1, -2, -3]
 // console.log(firstNegativeSW([5], 1)); // Expected: [0]
+
+function firstNegativeOptimal(arr, k) {
+  let finalArr = [];
+  let firstNegIdx = -1;
+
+  for (let right = 0; right < arr.length; right++) {
+    let left = right - k + 1;
+
+    if (left > firstNegIdx) {
+      firstNegIdx = -1;
+      for (let i = left; i <= right; i++) {
+        if (arr[i] < 0) {
+          firstNegIdx = i;
+          break;
+        }
+      }
+    }
+
+    if (right >= k - 1) {
+      finalArr.push(firstNegIdx >= left ? arr[firstNegIdx] : 0);
+    }
+  }
+  return finalArr;
+}
+
+console.log("\n--- firstNegativeOptimal ---");
+console.log(firstNegativeOptimal([12, -1, -7, 8, -15, 30, 16, 28], 3));
+console.log(firstNegativeOptimal([-8, 2, 3, -6, 10], 2));
+console.log(firstNegativeOptimal([1, 2, 3, 4, 5], 3));
+console.log(firstNegativeOptimal([-1, -2, -3, -4], 2));
+console.log(firstNegativeOptimal([5], 1));

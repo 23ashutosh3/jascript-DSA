@@ -21,7 +21,6 @@ Ek array diya hai, hume sabse chhota subarray dhundhna hai jiska sum target ke b
 - Condition me koi running total ho — jaise sum, character count, etc.
 - Sabse badi pehchaan: problem me **lagaataar (contiguous)** elements maange, random elements nahi
 
-
-
-
 if duplicates come use hash set in sliding widow
+
+when specific size of arr of given which can considered as window then you can use arr to push and pop for sliding window

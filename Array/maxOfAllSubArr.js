@@ -35,14 +35,33 @@
 // ==========================================
 
 function maxOfAllSubArr(nums, k) {
-  // your solution here
+  const deque = [];
+  const result = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (deque.length > 0 && deque[0] <= i - k) {
+      deque.shift();
+    }
+
+    while (deque.length > 0 && nums[deque[deque.length - 1]] <= nums[i]) {
+      deque.pop();
+    }
+
+    deque.push(i);
+
+    if (i >= k - 1) {
+      result.push(nums[deque[0]]);
+    }
+  }
+
+  return result;
 }
 
 // -------------------- Test Cases --------------------
 
 console.log(maxOfAllSubArr([1, 3, -1, -3, 5, 3, 6, 7], 3)); // Expected: [3, 3, 5, 5, 6, 7]
-console.log(maxOfAllSubArr([1, 2, 3, 4, 5], 2));              // Expected: [2, 3, 4, 5]
-console.log(maxOfAllSubArr([5, 4, 3, 2, 1], 3));              // Expected: [5, 4, 3]
-console.log(maxOfAllSubArr([1, 1, 1, 1], 2));                  // Expected: [1, 1, 1]
-console.log(maxOfAllSubArr([7], 1));                            // Expected: [7]
-console.log(maxOfAllSubArr([1, -1, 5, -2, 3], 3));            // Expected: [5, 5, 5]
+console.log(maxOfAllSubArr([1, 2, 3, 4, 5], 2)); // Expected: [2, 3, 4, 5]
+console.log(maxOfAllSubArr([5, 4, 3, 2, 1], 3)); // Expected: [5, 4, 3]
+console.log(maxOfAllSubArr([1, 1, 1, 1], 2)); // Expected: [1, 1, 1]
+console.log(maxOfAllSubArr([7], 1)); // Expected: [7]
+console.log(maxOfAllSubArr([1, -1, 5, -2, 3], 3)); // Expected: [5, 5, 5]

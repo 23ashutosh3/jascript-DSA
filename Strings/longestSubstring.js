@@ -92,3 +92,18 @@ console.log(longestSubstringSW("")); // Expected: 0
 console.log(longestSubstringSW("abcdef")); // Expected: 6
 console.log(longestSubstringSW("dvdf")); // Expected: 3
 console.log(longestSubstringSW("aab")); // Expected: 2
+
+function longestSubstringSW(str) {
+  let maxlength = 0;
+  let left = 0;
+  const set = new Set();
+  for (right = 0; right < str.length; right--) {
+    while (set.has(str[i])) {
+      set.delete(str[i]);
+      left++;
+    }
+    set.add(str[i]);
+    maxlength = Math.max(maxlength, right - left + 1);
+  }
+  return maxlength;
+}
