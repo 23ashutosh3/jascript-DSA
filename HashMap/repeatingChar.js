@@ -16,34 +16,34 @@
 //   - Return as soon as the first repeat is found
 // ==========================================
 
-
-function firstRepeatingChar() {
-  const str1 = this.input;
-
+function firstRepeatingChar(input) {
   const map = new Map();
-
-  for (let char of str1) {
-    if (map.has(char)) {
-      const newCount = map.get(char) + 1;
-      map.set(char, newCount);
-
-      return { char, newCount };
+  let count = 0;
+  for (let i = 0; i < input.length; i++) {
+    if (map.has(input[i])) {
+      const newCount = map.get(input[i]) + 1;
+      return {
+        char: input[i],
+        newCount,
+      };
     } else {
-      map.set(char, 1);
+      map.set(input[i], 1);
     }
   }
   return null;
 }
 
 // -------------------- Test Cases --------------------
-console.log(firstRepeatingChar.call({ input: "azbbcde" }));
+console.log(firstRepeatingChar("azbbcde"));
 // Expected: { char: 'b', newCount: 2 }
 
-console.log(firstRepeatingChar.call({ input: "abcdef" }));
+console.log(firstRepeatingChar("abcdef"));
 // Expected: null
 
-console.log(firstRepeatingChar.call({ input: "abca" }));
+console.log(firstRepeatingChar("abca"));
 // Expected: { char: 'a', newCount: 2 }
+
+
 
 // ==========================================
 // 2. All Repeating Characters with Count (HashMap)
