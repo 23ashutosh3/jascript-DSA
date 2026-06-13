@@ -43,8 +43,6 @@ console.log(firstRepeatingChar("abcdef"));
 console.log(firstRepeatingChar("abca"));
 // Expected: { char: 'a', newCount: 2 }
 
-
-
 // ==========================================
 // 2. All Repeating Characters with Count (HashMap)
 // ==========================================
@@ -63,26 +61,26 @@ console.log(firstRepeatingChar("abca"));
 // ==========================================
 
 function allRepeatingCharsMap() {
-  const str1 = this.input;
-
+  const input = this.input;
   const map = new Map();
 
-  for (let char of str1) {
-    if (map.has(char)) {
-      const newCount = map.get(char) + 1;
-      map.set(char, newCount);
+  for (let i = 0; i < input.length; i++) {
+    if (map.has(input[i])) {
+      const count = map.get(input[i]) + 1;
+      map.set(input[i], count);
     } else {
-      map.set(char, 1);
-    }
-  }
-  const arr = [];
-  for (let [ele, count] of map.entries()) {
-    if (map.get(ele) > 1) {
-      arr.push({ ele, count });
+      map.set(input[i], 1);
     }
   }
 
-  return arr.length ? arr : null;
+  let arr = [];
+  for (let [char, count] of map) {
+    if (count > 1) {
+      arr.push({ char, count });
+    }
+  }
+
+  return arr.length > 0 ? arr : null;
 }
 
 // -------------------- Test Cases --------------------
